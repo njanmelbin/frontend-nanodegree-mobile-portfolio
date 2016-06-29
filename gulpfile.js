@@ -66,7 +66,7 @@ gulp.task('optimise',function(){
   		.pipe(imagemin())
   		.pipe(gulp.dest('dist/img'));
 
-  	gulp.src('views/img/*.{png,jpg,jpeg,gif}')
+  	gulp.src('views/images/*.{png,jpg,jpeg,gif}')
   		.pipe(imagemin())
   		.pipe(gulp.dest('dist/views/images'));
 });
