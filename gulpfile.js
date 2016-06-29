@@ -64,7 +64,11 @@ gulp.task('minify',function(){
 gulp.task('optimise',function(){
 	 gulp.src('img/*.{png,jpg,jpeg,gif}')
   		.pipe(imagemin())
-  		.pipe(gulp.dest('dist/images'));
+  		.pipe(gulp.dest('dist/img'));
+
+  	gulp.src('views/img/*.{png,jpg,jpeg,gif}')
+  		.pipe(imagemin())
+  		.pipe(gulp.dest('dist/views/images'));
 });
 
 // clears the dist directory
