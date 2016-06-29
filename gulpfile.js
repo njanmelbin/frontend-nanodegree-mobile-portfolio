@@ -4,7 +4,8 @@ var gulp = require('gulp'),
 	imagemin = require('gulp-imagemin')
 	runsequence = require('run-sequence'),
 	del = require('del'),
-	uglify = require('gulp-uglify');
+	uglify = require('gulp-uglify'),
+	inlinecss = require('gulp-inline-css');
 
 
 // development tasks
@@ -33,6 +34,14 @@ gulp.task('copy',function(){
 	gulp.src('views/*.html')
 		.pipe(gulp.dest('dist/views'))
 });
+
+//inline css
+
+gulp.task('inlineCss',function(){
+	gulp.src('*.html')
+		.pipe(inlinecss())
+		.pipe(gulp.dest('dist'))
+});
 //minimise javascript
 gulp.task('uglify',function(){
 	gulp.src('views/js/*.js')
@@ -43,10 +52,10 @@ gulp.task('uglify',function(){
 
 //minify css
 gulp.task('minify',function(){
-	gulp.src('css/*.css')
+/*	gulp.src('css/*.css')
 		.pipe(cssnano())
 		.pipe(gulp.dest('dist/css'));
-	gulp.src('views/css/*.css')
+*/	gulp.src('views/css/*.css')
 		.pipe(cssnano())
 		.pipe(gulp.dest('dist/views/css'));
 });
@@ -65,6 +74,6 @@ gulp.task('clean-dist',function(){
 
 //shedules the production tasks to run in a particular order
 gulp.task('build',function(callback){
-	runsequence('clean-dist','minify','optimise','copy','uglify',callback);
+	runsequence('clean-dist','minify','optimise','copy','uglify','inlineCss',callback);
 });
 
