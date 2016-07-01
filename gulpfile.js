@@ -33,6 +33,10 @@ gulp.task('copy',function(){
 		.pipe(gulp.dest('dist/js'));
 	gulp.src('views/*.html')
 		.pipe(gulp.dest('dist/views'))
+	gulp.src('img/*.{jpg,png,jpeg,svg}')
+		.pipe(gulp.dest('dist/img'));
+	gulp.src('views/images')
+		.pipe(gulp.dest('dist/views/images'))
 });
 
 //inline css
@@ -61,7 +65,7 @@ gulp.task('minify',function(){
 });
 
 // image optimisation
-gulp.task('optimise',function(){
+/*gulp.task('optimise',function(){
 	 gulp.src('img/*.{png,jpg,jpeg,gif}')
   		.pipe(imagemin())
   		.pipe(gulp.dest('dist/img'));
@@ -70,7 +74,7 @@ gulp.task('optimise',function(){
   		.pipe(imagemin())
   		.pipe(gulp.dest('dist/views/images'));
 });
-
+*/
 // clears the dist directory
 gulp.task('clean-dist',function(){
 	return del('dist');
@@ -78,6 +82,6 @@ gulp.task('clean-dist',function(){
 
 //shedules the production tasks to run in a particular order
 gulp.task('build',function(callback){
-	runsequence('clean-dist','minify','optimise','copy','uglify','inlineCss',callback);
+	runsequence('clean-dist','minify','copy','uglify','inlineCss',callback);
 });
 

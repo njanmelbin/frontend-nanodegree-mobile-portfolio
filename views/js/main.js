@@ -452,16 +452,9 @@ var resizePizzas = function(size) {
     var allpizza = document.getElementsByClassName('randomPizzaContainer');
     var dx = determineDx(allpizza[0],size);
     var newwidth= allpizza[0].offsetWidth+dx+'px'
-/*    console.log('first');
-    console.log(dx);
-    console.log(newwidth);
-*/    var length = allpizza.length;
+    var length = allpizza.length;
     for (var i = 0; i <length ; i++) {
-/*      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      console.log(dx);
-      console.log(newwidth);
-*/       allpizza[i].style.width = newwidth;
+       allpizza[i].style.width = newwidth;
     }
   }
 
@@ -527,17 +520,7 @@ function updatePositions() {
   var phase;
   for (var i = 0; i < items.length; i++) {
     phase = phaseArray[i % 5];
-    // console.log(i);
-    // console.log(phase);
-    // console.log(items[i].basicLeft);
-    // console.log(items[i].basicLeft *phase);
-    // var x = items[i].basicLeft  * phase;
-    // console.log(x);
-    // console.log( 'translateX('+ (items[i].basicLeft +100 * phase) +'px)');
-    // console.log(items[i].basicLeft +100 *phase +'px');
-    // translateX does not give any performance boost
-    // items[i].style.transform = 'translateX('+ (items[i].basicLeft*phase) +'px)';
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.transform = 'translateX('+ (items[i].basicLeft*phase) +'px)';
 
   }
 
@@ -552,7 +535,7 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+window.addEventListener('scroll',requestAnimationFrame(updatePostions));
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
@@ -571,5 +554,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // document.querySelector less efficient
     document.getElementById("movingPizzas1").appendChild(elem);
   }
-  updatePositions();
+  window.requestAnimationFrame(updatePositions);;
 });
