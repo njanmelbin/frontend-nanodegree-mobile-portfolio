@@ -35,7 +35,7 @@ gulp.task('copy',function(){
 		.pipe(gulp.dest('dist/views'))
 	gulp.src('img/*.{jpg,png,jpeg,svg}')
 		.pipe(gulp.dest('dist/img'));
-	gulp.src('views/images')
+	gulp.src('views/images/*.{jpg,png,jpeg,svg}')
 		.pipe(gulp.dest('dist/views/images'))
 });
 
