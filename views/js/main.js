@@ -513,14 +513,14 @@ function updatePositions() {
 // only five values
   var phaseArray=[];
   for(var i=0; i<5 ; i++){
-    phaseArray.push(Math.sin(scrollval + (i)));
+    phaseArray.push(Math.sin(scrollval + (i))*100-600);
   }
 // move variable creation out of loop ,bcoz otherwise everytime loop runs 
 // hectic work of creating a variable needs to be done 
   var phase;
   for (var i = 0; i < items.length; i++) {
     phase = phaseArray[i % 5];
-    items[i].style.transform='translateX('+ (items[i].basicLeft +100 * phase) +'px)';
+    items[i].style.transform='translateX('+ (items[i].basicLeft+ phase) +'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
