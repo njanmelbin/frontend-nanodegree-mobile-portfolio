@@ -451,7 +451,7 @@ var resizePizzas = function(size) {
   function changePizzaSizes(size) {
     var allpizza = document.getElementsByClassName('randomPizzaContainer');
     var dx = determineDx(allpizza[0],size);
-    var newwidth= allpizza[0].offsetWidth+dx+'px'
+    var newwidth= allpizza[0].offsetWidth+dx+'px';
     var length = allpizza.length;
     for (var i = 0; i <length ; i++) {
        allpizza[i].style.width = newwidth;
@@ -513,15 +513,14 @@ function updatePositions() {
 // only five values
   var phaseArray=[];
   for(var i=0; i<5 ; i++){
-    phaseArray.push(Math.sin(scrollval + (i)))
+    phaseArray.push(Math.sin(scrollval + (i)));
   }
 // move variable creation out of loop ,bcoz otherwise everytime loop runs 
 // hectic work of creating a variable needs to be done 
   var phase;
   for (var i = 0; i < items.length; i++) {
     phase = phaseArray[i % 5];
-    items[i].style.transform = 'translateX('+ (items[i].basicLeft*phase) +'px)';
-
+    items[i].style.transform='translateX('+ (items[i].basicLeft +100 * phase) +'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -535,7 +534,7 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll',requestAnimationFrame(updatePostions));
+window.addEventListener('scroll',updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
@@ -554,5 +553,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // document.querySelector less efficient
     document.getElementById("movingPizzas1").appendChild(elem);
   }
-  window.requestAnimationFrame(updatePositions);;
+  updatePositions();
 });
