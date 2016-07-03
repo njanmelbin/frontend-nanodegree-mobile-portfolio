@@ -10,3 +10,7 @@
 
 ##Tools used
 * gulp
+
+#Optimizations
+* time to resize pizzas is less than 5 ms using pizza slider.
+* On Scrolling,consistent frame rate of 60fps achieved
